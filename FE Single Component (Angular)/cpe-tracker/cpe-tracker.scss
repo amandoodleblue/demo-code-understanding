@@ -1,0 +1,143 @@
+::ng-deep app-cpe-tracker {
+  display: flex;
+  justify-content: center;
+}
+
+.cpe-tracker {
+  max-width: 1268px;
+  margin-top: 5%;
+}
+
+.cpe-header p {
+  /* font-family: SF UI Display; */
+}
+
+.overlay-dropdown {
+}
+
+.keep-text {
+}
+
+.credits {
+  cursor: pointer;
+  border-radius: 14.6px;
+  background: var(--Colours-Grey, #444);
+  width: 442px;
+  height: 65px;
+
+  .active-credits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 48.91px;
+    border-radius: 8.76px;
+    background: #f8fff9;
+    box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.04) inset,
+      0px 2px 0px 0px rgba(255, 255, 255, 0.25) inset,
+      0px 4px 8px -4px rgba(0, 0, 0, 0.25);
+    color: #1471e2;
+    text-align: center;
+
+    p {
+      color: #1471e2;
+      /* font-size: 18px; */
+      /* font-weight: 700; */
+      /* line-height: 16.899px; */
+    }
+  }
+
+  .inActive-credits {
+    width: 50%;
+    height: 48.91px;
+
+    p {
+      /* color: var(--White, #fff); */
+      /* font-size: 18px; */
+      /* font-weight: 500; */
+      /* line-height: 18.816px; */
+    }
+  }
+}
+
+.credit-box {
+  .one {
+    p, span, h1 {
+      /* font-family: 'SF UI Display', sans-serif; */
+    }
+  }
+
+  .active-one {
+  }
+
+  .two, .three {
+    cursor: pointer;
+    background: #04101c;
+
+    .left p, .left span {
+      /* font-family: 'SF UI Display', sans-serif; */
+    }
+  }
+
+  .active-two, .active-three {
+    background-color: #0e0e0e;
+    border-radius: 16.8px;
+    border: 1.05px solid #0a74de;
+    box-shadow: 0px 0px 16.8px 0px rgba(6, 52, 91, 0.08);
+  }
+}
+
+.accounting span {
+  background: #5a6499;
+}
+
+.ethics span {
+  background: #f06b6d;
+}
+
+.others span {
+  background: #fcc046;
+}
+
+.webinar span {
+  background: #5a6499;
+}
+
+.self span {
+  background: #fcc046;
+}
+
+.activeText {
+  color: #f0f4f7;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 320px) and (max-width: 600px) {
+  .cpe-tracker {
+    padding: 50px 16px;
+  }
+
+  .cpe-header .overlay-dropdown {
+    display: none;
+  }
+
+  .credits {
+    font-size: 16px;
+    width: 100%;
+    height: 48px;
+    padding: 8px !important;
+  }
+
+  .active-credits {
+    height: 32px !important;
+    font-size: 12px !important;
+  }
+
+  .credit-box {
+    overflow-x: scroll;
+  }
+
+  .credit-box::-webkit-scrollbar {
+    display: none;
+  }
+}

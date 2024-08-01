@@ -1,0 +1,177 @@
+<div class="cpe-tracker w-full py-10">
+  <div class="flex justify-center relative mt-5">
+    <p class="text-white text-center sf_bold text-[24px] md:text-[32px] leading-[37.76px]">
+      CPE Tracker Overview
+    </p>
+  </div>
+
+  <div class="text-center mt-3">
+    <h1 class="text-white sf_medium text-xs md:text-2xl">
+      Keeping track of the number of verifiable hours you have completed each year.
+    </h1>
+  </div>
+
+  <div class="credits cursor-pointer flex justify-center items-center gap-7 mt-5 mx-auto">
+    <div
+      [class.active-credits]="creditType === 'EARNED'"
+      (click)="credit('EARNED')"
+      class="text-[#7d7d7d] text-center sf_bold text-xs md:text-lg"
+    >
+      Credits Earned
+    </div>
+    <div
+      [class.active-credits]="creditType === 'UPCOMING'"
+      (click)="credit('UPCOMING')"
+      class="text-[#7d7d7d] text-center sf_bold text-xs md:text-lg"
+    >
+      Upcoming Credits
+    </div>
+  </div>
+
+  <div class="hidden md:block">
+    <div class="flex justify-end">
+      <app-custom-dropdown></app-custom-dropdown>
+    </div>
+
+    <div class="credit-box flex items-stretch gap-3 justify-between mt-5">
+      <div
+        class="one w-full md:w-1/5 p-4 relative text-start h-[267px]"
+        [class.active-one]="tableShowState === 'course' || tableShowState === 'study'"
+      >
+        <img
+          src="../../../assets/gif/tracker_gif.gif"
+          alt=""
+          class="absolute bottom-[70%] w-[168px] h-[168px] object-cover"
+        />
+        <div *ngIf="creditType === 'EARNED'">
+          <p class="text-[#FFA548] text-[25.2px] sf_semibold pt-[40%]">Credits Earned</p>
+          <span class="text-white text-[16.8px] sf_medium">Total credits that you have earned so far.</span>
+          <h1 class="absolute bottom-[5%] text-white text-center text-[63px] sf_heavy tracking-[2.52px]">30</h1>
+        </div>
+        <div *ngIf="creditType === 'UPCOMING'">
+          <p class="text-[#FFA548] text-[25.2px] sf_semibold pt-[30%]">Upcoming Credits</p>
+          <span class="text-white text-[16.8px] sf_medium">Register or start Self-study now for more credits.</span>
+          <h1 class="absolute bottom-[5%] text-white text-center text-[63px] sf_heavy tracking-[2.52px]">16</h1>
+        </div>
+      </div>
+
+      <div
+        class="two flex w-full md:w-[37%] h-[267px] border border-solid border-[#FFF] shadow-[0px_0px_16.8px_0px_rgba(6,52,91,0.08)] rounded-[16.8px] p-4"
+        [class.active-two]="tableShowState === 'course'"
+        (click)="select('course')"
+      >
+        <div class="w-6/12">
+          <p class="text-[#3084E1] text-[25.2px] sf_semibold">Courses</p>
+          <span class="text-[#F0F4F7] text-[16.8px] sf_medium">Details of credits earned on courses.</span>
+          <div class="flex items-center gap-3 mt-3">
+            <span class="rounded border w-4 h-4 block border-solid border-[#5A6499]"></span>
+            <small class="text-[#F0F4F7] text-base sf_medium">Accounting - 15/30</small>
+          </div>
+          <div class="flex items-center gap-3 my-3">
+            <span class="rounded border w-4 h-4 block border-solid border-[#F06B6D]"></span>
+            <small class="text-[#F0F4F7] text-base sf_medium">Ethics - 10/30</small>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="rounded border w-4 h-4 block border-solid border-[#FCC046]"></span>
+            <small class="text-[#F0F4F7] text-base sf_medium">Others - 3/30</small>
+          </div>
+        </div>
+        <div class="w-6/12 flex justify-end">
+          <canvas id="doughnutChartCanvas0"></canvas>
+        </div>
+      </div>
+
+      <div
+        class="three w-full md:w-[37%] h-[267px] border border-solid border-[#FFF] shadow-[0px_0px_16.8px_0px_rgba(6,52,91,0.08)] rounded-[16.8px] p-4 flex"
+        [class.active-three]="tableShowState === 'study'"
+        (click)="select('study')"
+      >
+        <div class="w-6/12">
+          <p class="text-[#3084E1] text-[25.2px] sf_semibold mb-2.5">Study Mode</p>
+          <span class="text-[#F0F4F7] text-base sf_medium">Details of time spent on the mode of study.</span>
+          <div class="flex items-center gap-3 mt-3">
+            <span class="rounded border w-4 h-4 block border-solid border-[#5A6499]"></span>
+            <small class="text-[#F0F4F7] text-xs sf_medium">Webinar - 15/15</small>
+          </div>
+          <div class="flex items-center gap-3 my-3">
+            <span class="rounded border w-4 h-4 block border-solid border-[#FCC046]"></span>
+            <small class="text-[#F0F4F7] text-xs sf_medium">Self Study - 12/15</small>
+          </div>
+        </div>
+        <div class="w-6/12 flex justify-end">
+          <canvas id="doughnutChartCanvas1"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 block md:hidden">
+    <div class="flex justify-center mb-2">
+      <img src="../../../assets/gif/tracker_gif.gif" alt="" class="object-cover w-[80px] h-[80px]" />
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="w-[65%]">
+        <p class="text-white text-[28.926px] sf_semibold">14 <span class="text-[#FFA548] text-xl sf_semibold">Credits Earned</span></p>
+        <h1 class="pt-2 text-[#C4C4C4] text-xs sf_medium">Total credits that you have earned so far.</h1>
+      </div>
+      <div class="w-[30%]">
+        <app-custom-dropdown></app-custom-dropdown>
+      </div>
+    </div>
+
+    <div class="flex justify-between gap-3 my-[24px]">
+      <div
+        class="two flex flex-col w-[50%] border border-solid border-[#FFF] shadow-[0px_0px_16.8px_0px_rgba(6,52,91,0.08)] rounded-[16.8px] p-4"
+        [class.active-two]="tableShowState === 'course'"
+        (click)="select('course')"
+      >
+        <p class="text-white text-[16px] sf_semibold">Courses</p>
+        <span class="text-[#999] text-[12px] sf_medium">Details of credits earned on courses.</span>
+        <div class="flex items-center gap-3 mt-3">
+          <span class="rounded border w-4 h-4 block border-solid border-[#5A6499]"></span>
+          <small class="text-[#f0f4f7] text-xs sf_medium">Accounting - 15/30</small>
+        </div>
+        <div class="flex items-center gap-3 my-3">
+          <span class="rounded border w-4 h-4 block border-solid border-[#F06B6D]"></span>
+          <small class="text-[#f0f4f7] text-xs sf_medium">Ethics - 10/30</small>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="rounded border w-4 h-4 block border-solid border-[#FCC046]"></span>
+          <small class="text-[#f0f4f7] text-xs sf_medium">Others - 3/30</small>
+        </div>
+        <div class="flex justify-center canvas pb-5">
+          <canvas id="doughnutChartCanvas3" width="100" height="100"></canvas>
+        </div>
+      </div>
+
+      <div
+        class="three w-[50%] border border-solid border-[#FFF] shadow-[0px_0px_16.8px_0px_rgba(6,52,91,0.08)] rounded-[16.8px] p-4 flex flex-col"
+        [class.active-three]="tableShowState === 'study'"
+        (click)="select('study')"
+      >
+        <p class="text-white text-[16px] sf_semibold">Study Mode</p>
+        <span class="text-[#999] text-[12px] sf_medium">Details of time spent on the mode of study.</span>
+        <div class="flex items-center gap-3 mt-3">
+          <span class="rounded border w-4 h-4 block border-solid border-[#5A6499]"></span>
+          <small class="text-[#f0f4f7] text-xs sf_medium">Webinar - 15/15</small>
+        </div>
+        <div class="flex items-center gap-3 my-3">
+          <span class="rounded border w-4 h-4 block border-solid border-[#FCC046]"></span>
+          <small class="text-[#f0f4f7] text-xs sf_medium">Self Study - 12/15</small>
+        </div>
+        <div class="flex justify-center pb-5">
+          <canvas id="doughnutChartCanvas4" width="100" height="100"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <app-common-table
+      [currentTab]="creditType"
+      [creditType]="tableShowState"
+      [tableData]="activeData"
+      [tableHeadData]="activeHeadData"
+    ></app-common-table>
+  </div>
+</div>
